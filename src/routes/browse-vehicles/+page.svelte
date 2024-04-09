@@ -105,6 +105,7 @@
     amounts: [1, 2, 5, 10],
   } satisfies PaginationSettings;
 
+  // Utility function to format strings into Title Case.
   function toTitleCase(str: string) {
     return str.toLowerCase().replace(/\b\w/g, function (char) {
       return char.toUpperCase();
