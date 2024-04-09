@@ -23,12 +23,14 @@
   import flatpickr from "flatpickr";
   import { modeCurrent } from "@skeletonlabs/skeleton";
 
+  // Declares reactive data and some local state variables for managing UI state.
   export let data;
 
   const modalStore = getModalStore();
   const toastStore = getToastStore();
 
   let { cars } = data;
+  // Initializes price filters based on the data provided.
   const maximumPrice = Math.max(...cars.map((car) => car.dailyPrice)) / 100;
   const minimumPrice = Math.min(...cars.map((car) => car.dailyPrice)) / 100;
   let values = [minimumPrice, maximumPrice];
@@ -42,6 +44,7 @@
   let ref: Node;
   let disableFilterButton = false;
 
+  // Svelte store reactivity to update the theme for Flatpickr dynamically.
   let themeMode = getModeUserPrefers() ? "material_blue" : "dark";
 
   $: {
@@ -67,6 +70,7 @@
       showPopup(popUpCar);
     }
 
+    // Sets up date picking functionality using Flatpickr.
     flatpickr(ref, {
       allowInput: true,
       clickOpens: true,
@@ -93,6 +97,7 @@
       paginationSettings.limit,
   );
 
+  // Pagination settings and logic for handling user interactions.
   let paginationSettings = {
     page: 0,
     limit: 10,
